@@ -1,0 +1,6 @@
+[submodule "article_sites/connect"]
+	path = article_sites/connect
+	url = https://github.com/shimane-u-pim/connect.pim-shimane.com.git
+[submodule "article_sites/site"]
+	path = article_sites/site
+	url = https://github.com/shimane-u-pim/shimane-u-pim.github.io
