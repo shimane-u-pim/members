@@ -13,6 +13,7 @@
 <body>
     <script>
         const articles = /*articles*/;
+        const keywords = /*keywords*/;
     </script>
 
     <nav class="navbar navbar-light bg-light">
@@ -24,11 +25,22 @@
     <div class="m-3">
         <div class="container">
             <div class="row mt-5 p-3">
-                <div class="col">
-                    <img src="/*image*/" class="rounded mx-auto d-block" alt="User profile pic">
+                <div class="col-12 col-md-6">
+                    <img src="/*image*/" class="rounded mx-auto d-block" alt="User profile pic" height="200px">
+                    <div class="text-center mt-3">
+                        <h4>/*name*/</h4>
+                    </div>
                 </div>
-                <div class="text-center mt-3">
-                    <h4>/*name*/</h4>
+                <div class="col-12 col-md-6">
+                    <div>
+                        技術
+                        <ul id="keywords"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    /*message*/
                 </div>
             </div>
             <div class="row">
@@ -50,6 +62,13 @@
         </div>
     </div>
 
+    <script>
+        keywords.forEach(function (i) {
+            let li = document.createElement('li');
+            li.innerText = i;
+            document.getElementById('keywords').appendChild(li);
+        });
+    </script>
     <script>
         document.getElementById('articles').innerHTML = '';
 

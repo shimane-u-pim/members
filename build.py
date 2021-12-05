@@ -4,6 +4,7 @@ import os
 import json
 import yaml
 import shutil
+import html
 
 
 def get_html(file):
@@ -84,7 +85,9 @@ for mdf in glob.glob('./content/*.yaml'):
     html = template \
         .replace('/*name*/', user['name']) \
         .replace('/*image*/', user.get('image', 'https://avatar.tobi.sh/' + uid)) \
+        .replace('/*keywords*/', json.dumps(user['keywords'])) \
         .replace('/*articles*/', json.dumps(user['articles'])) \
+        .replace('/*message*/', html.escape(user['message'])) \
 
     with open('./output/' + uid + '.html', 'w', encoding='utf-8') as f:
         f.write(html)
