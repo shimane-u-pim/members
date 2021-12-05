@@ -5,11 +5,95 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <title>部員紹介</title>
 </head>
 
 <body>
+    <script>
+        const articles = /*articles*/;
+    </script>
 
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Pim</a>
+        </div>
+    </nav>
+
+    <div class="m-3">
+        <div class="container">
+            <div class="row mt-5 p-3">
+                <div class="col">
+                    <img src="/*image*/" class="rounded mx-auto d-block" alt="User profile pic">
+                </div>
+                <div class="text-center mt-3">
+                    <h4>/*name*/</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <hr />
+                </div>
+            </div>
+        </div>
+
+        <div id="article">
+            <h5 class="text-center">記事一覧</h5>
+            <div id="articles">
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-grow text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('articles').innerHTML = '';
+
+        articles.forEach(function (i) {
+            let source = '';
+            let url_prefix = 'https://';
+            switch (i['source']) {
+                case 'connect':
+                    source = 'Pim Connect';
+                    url_prefix += 'connect.pim-shimane.com/posts/';
+                    break;
+                case 'site':
+                    source = '部員ブログ';
+                    url_prefix += 'pim-shimane.com/blog/';
+                    break;
+                default:
+                    source = 'その他のメディア';
+                    break;
+            }
+
+            let tagstr = `#${source}`;
+            i['tags'].forEach(function (tag) {
+                tagstr += ' #' + tag;
+            });
+
+            let card = document.createElement('div');
+            card.className = 'card mt-3 w-100 m-2';
+            let card_body = document.createElement('div');
+            card_body.className = 'card-body';
+            let card_title = document.createElement('a');
+            card_title.className = 'card-title';
+            card_title.href = url_prefix + i['page'];
+            card_title_text = document.createElement('h5');
+            card_title_text.innerText = i['title'];
+            card_title.appendChild(card_title_text);
+            let card_subtitle = document.createElement('h6');
+            card_subtitle.className = 'card-subtitle mb-2 text-muted';
+            card_subtitle.innerText = tagstr;
+            card_body.appendChild(card_title);
+            card_body.appendChild(card_subtitle);
+            card.appendChild(card_body);
+            document.getElementById('articles').appendChild(card);
+        });
+    </script>
 </body>
 
 </html>
